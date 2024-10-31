@@ -1,0 +1,18 @@
+torch
+transformers 
+accelerate
+bitsandbytes
+sentence-transformers 
+unstructured[all-docs] 
+langchain 
+chromadb
+langchain_community 
+langchain-astradb 
+langchain-google-genai 
+google-generativeai
+datasets
+pypdf  
+python-dotenv 
+flask
+
+-e .
