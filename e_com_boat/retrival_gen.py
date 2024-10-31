@@ -1,8 +1,8 @@
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
-from langchain_google_genai import ChartGoogleGenerativeAI
-from ecommbot.data_ingensation import data_ingensation
+from langchain_google_genai import ChatGoogleGenerativeAI
+from e_com_boat.data_ingensation import data_ingensation
 
 
 def generation(vstore):
@@ -26,7 +26,7 @@ def generation(vstore):
 
     prompt = ChatPromptTemplate.from_template(PRODUCT_BOT_TEMPLATE)
 
-    llm =  ChartGoogleGenerativeAI(model="gemini-1.5-pro")
+    llm =  ChatGoogleGenerativeAI(model="gemini-1.5-pro")
 
     chain = (
         {"context": retriever, "question": RunnablePassthrough()}
