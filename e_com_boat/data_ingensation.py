@@ -1,18 +1,24 @@
 from langchain_astradb import AstraDBVectorStore
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from dotenv import load_dotenv
 import os
 import pandas as pd
-from ecommbot.data_converter import dataconveter
+from e_com_boat.data_converter import dataconveter
+
 
 load_dotenv()
 
-GOOGLE_API_KEY=os.getenv("gemini_api_key")
-ASTRA_DB_API_ENDPOINT=os.getenv("astra_db_api_endpoint")
-ASTRA_DB_APPLICATION_TOKEN=os.getenv("astra_db_apllication_token") 
-ASTRA_DB_KEYSPACE=os.getenv("astradb_keyspace")")
+GOOGLE_API_KEY=os.getenv("GOOGLE_API_KEY")
+ASTRA_DB_API_ENDPOINT=os.getenv("ASTRA_DB_API_ENDPOINT")
+ASTRA_DB_APPLICATION_TOKEN=os.getenv("ASTRA_DB_APPLICATION_TOKEN") 
+ASTRA_DB_KEYSPACE=os.getenv("ASTRA_DB_KEYSPACE")
 
-embedding =GoogleGenerativeAIEmbeddings(api_key=GOOGLE_API_KEY)
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
+embedding = GoogleGenerativeAIEmbeddings(
+    api_key="GOOGLE_API_KEY",
+    model="models/embedding-001"
+)
+
+
 
 def data_ingensation(status):
     vstore = AstraDBVectorStore(
@@ -33,7 +39,7 @@ def data_ingensation(status):
     return vstore, inserted_ids
 
 if __name__=='__main__':
-    vstore,inserted_ids=ingestdata(None)
+    vstore,inserted_ids=data_ingensation(None)
     print(f"\nInserted {len(inserted_ids)} documents.")
     results = vstore.similarity_search("can you tell me the low budget sound basshead.")
     for res in results:

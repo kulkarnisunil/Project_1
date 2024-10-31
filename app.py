@@ -1,8 +1,8 @@
 from flask import Flask, render_template, jsonify, request
 from dotenv import load_dotenv
 import os
-from e_com_bot.retrieval_generation import generation
-from e_com_bot.ingest import data_ingensation
+from e_com_bot.retrival_gen import generation
+from e_com_bot.data_ingensation import data_ingensation
 
 app = Flask(__name__)
 
